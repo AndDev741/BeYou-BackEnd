@@ -10,7 +10,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $email = $data['email'];
 
 if(empty($email)){
-    echo json_encode(array('error' => 'Erro ao efetuar o login'));
+    echo json_encode(array('error' => 'Erro ao requisitar dados do perfil'));
     exit();
 } else{
     $getID = new getID();
