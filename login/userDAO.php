@@ -1,5 +1,6 @@
 <?php 
-require_once("basicDAO.php");
+require_once("../DAO/basicDAO.php");
+echo "teste";
 
 class userDAO extends BasicDAO{
     public function registerUser($name, $email, $pass){

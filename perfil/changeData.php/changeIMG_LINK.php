@@ -1,6 +1,6 @@
 <?php 
 require_once("../perfilDAO.php");
-require_once("../getID.php");
+require_once("../../DAO/getID.php");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");

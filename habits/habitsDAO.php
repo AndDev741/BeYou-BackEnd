@@ -1,6 +1,5 @@
 <?php 
-require_once("configDB.php");
-require_once("basicDAO.php");
+require_once(__DIR__ . "/../DAO/basicDAO.php");
 class habitsDAO extends BasicDAO{
     private $email;
     public function registerUser($user_id, $name, $importance, $dificulty, $category, $weekDays, $description){

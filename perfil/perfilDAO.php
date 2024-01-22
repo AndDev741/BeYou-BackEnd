@@ -1,6 +1,5 @@
 <?php 
-require_once("configDB.php");
-require("getID.php");
+require_once(__DIR__ . "/../DAO/basicDAO.php");
 class perfilDAO extends BasicDAO{
     private $email;
     public function updateName($name, $id){
