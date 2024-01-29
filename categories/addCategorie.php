@@ -16,6 +16,7 @@ if(empty($data['name']) || empty($data['level'])){
 $email = $data['email'];
 $name = $data['name'];
 $level = $data['level'];
+$icon = $data['icon'];
 $xp;
 switch($level){
     case 'Iniciante':
@@ -36,7 +37,7 @@ try{
     $getID = new getID();
     $id = $getID->fetchUserByEmail([$email]);
     $id = $id['id'];
-    $addCategory->addCategory($name, $xp, $level, $id);
+    $addCategory->addCategory($name, $xp, $level, $id, $icon);
     echo json_encode(array("success" => "Categoria adicionada com sucesso!"));
     exit();
 }catch(error){
