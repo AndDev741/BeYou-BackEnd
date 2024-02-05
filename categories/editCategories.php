@@ -13,6 +13,7 @@ if(empty($data['name']) || empty($data['level'])){
     exit();
 }
 
+$categorieID = $data['id'];
 $email = $data['email'];
 $name = $data['name'];
 $level = $data['level'];
@@ -31,18 +32,13 @@ switch($level){
         $level = 7;
         $xp = 120 * $level;
 }
-
 try{
-    $addCategory = new categoriesDAO();
-    $getID = new getID();
-    $id = $getID->fetchUserByEmail([$email]);
-    $id = $id['id'];
-    $addCategory->addCategory($name, $xp, $level, $id, $icon);
-    echo json_encode(array("success" => "Categoria adicionada com sucesso!"));
-    exit();
-}catch(error){
-    echo json_encode(array("error" => "Erro ao adicionar a categoria"));
-    exit();
+    $categoryDao = new categoriesDAO();
+    $editCategory = $categoryDao->editCategory($name, $xp, $level, $icon, $categorieID);
+    $sucess ="Editado com sucesso!";
+    echo json_encode(array('success' => $sucess));
+} catch(e){
+    echo json_encode(array('error' => "Ocorreu um erro ao editar a categoria"));
 }
 
 ?>
