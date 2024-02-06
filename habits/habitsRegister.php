@@ -7,30 +7,29 @@ require_once("habitsDAO.php");
 require_once("../DAO/getID.php");
 
 $data = json_decode(file_get_contents("php://input"), true);
+if(empty($data['name']) || empty($data['importance']) || empty($data['dificulty'])){
+    $error = "Por favor preencha todos os campos";
+    echo json_encode(array('error' => $error));
+    exit();
+} else if(empty($data['categoryName']) || empty($data['categoryId'])){
+    $error = "Por favor adicione uma categoria";
+    echo json_encode(array('error' => $error));
+    exit();
+}
+
 $email = $data['email'];
 $name = $data['name'];
 $importance = $data['importance'];
 $dificulty = $data['dificulty'];
-$category = $data['category'];
 $weekDays = $data['weekDays'];
 $description = $data['description'];
+$category_name = $data['categoryName'];
+$category_id = $data['categoryId'];
 $error = '';
 $sucess = '';
 
-if(empty($name) || empty($importance) || empty($dificulty) || empty($category)){
-    $error = "Por favor preencha todos os campos";
-    echo json_encode(array('error' => $error));
-    exit();
-}else if(empty($weekDays)){
+if(empty($weekDays)){
     $error = "Por favor escolha pelo menos 1 dia da semana";
-    echo json_encode(array('error' => $error));
-    exit();
-}else if(strlen($name) > 55){
-    $error = "O nome do hábito tem que ser menor que 55 caracteres";
-    echo json_encode(array('error' => $error));
-    exit();
-}else if(strlen($description) > 255){
-    $error = "A descrição tem que ser menor que 255 caracteres";
     echo json_encode(array('error' => $error));
     exit();
 }else{
@@ -38,7 +37,7 @@ if(empty($name) || empty($importance) || empty($dificulty) || empty($category)){
     $id = $getID->fetchUserByEmail([$email]);
     $id = $id['id'];
     $newHabit = new habitsDAO();
-    $registerHabit = $newHabit->registerUser($id, $name, $importance, $dificulty, $category, $weekDays, $description);
+    $registerHabit = $newHabit->registerUser($id, $name, $importance, $dificulty, $category_name, $weekDays, $description, $category_id );
     $sucess ="Habito criado com sucesso!";
     echo json_encode(array('success' => $sucess));
     exit();

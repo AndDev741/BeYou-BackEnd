@@ -2,9 +2,9 @@
 require_once(__DIR__ . "/../DAO/basicDAO.php");
 class habitsDAO extends BasicDAO{
     private $email;
-    public function registerUser($user_id, $name, $importance, $dificulty, $category, $weekDays, $description){
-        $sql = "INSERT INTO habits VALUES(default, ?, ?, ?, ?, ?, ?, ?)";
-        $this->execDML($sql, $user_id, $name, $importance, $dificulty, $category, $weekDays, $description);
+    public function registerUser($user_id, $name, $importance, $dificulty, $category, $weekDays, $description, $category_id){
+        $sql = "INSERT INTO habits VALUES(default, ?, ?, ?, ?, ?, ?, ?, default, default, ?)";
+        $this->execDML($sql, $user_id, $name, $importance, $dificulty, $category, $weekDays, $description, $category_id);
     }
 
     public function getHabitsData($id){

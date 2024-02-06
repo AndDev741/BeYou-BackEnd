@@ -22,6 +22,11 @@ class categoriesDAO extends BasicDAO{
             $pdo = null;
         }
     }
+
+    public function deleteCategory($categoryId){
+        $sql = "DELETE FROM categories WHERE id = ?";
+        $this->execDML($sql, $categoryId);
+    }
 }
 
 ?>
