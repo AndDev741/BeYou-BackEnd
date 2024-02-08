@@ -21,26 +21,22 @@ $email = $data['email'];
 $name = $data['name'];
 $importance = $data['importance'];
 $dificulty = $data['dificulty'];
-$weekDays = $data['weekDays'];
 $description = $data['description'];
 $category_name = $data['categoryName'];
 $category_id = $data['categoryId'];
 $error = '';
 $sucess = '';
 
-if(empty($weekDays)){
-    $error = "Por favor escolha pelo menos 1 dia da semana";
-    echo json_encode(array('error' => $error));
-    exit();
-}else{
+try{
     $getID = new getID();
     $id = $getID->fetchUserByEmail([$email]);
     $id = $id['id'];
     $newHabit = new habitsDAO();
-    $registerHabit = $newHabit->registerUser($id, $name, $importance, $dificulty, $category_name, $weekDays, $description, $category_id );
+    $registerHabit = $newHabit->registerUser($id, $name, $importance, $dificulty, $category_name, $description, $category_id );
     $sucess ="Habito criado com sucesso!";
     echo json_encode(array('success' => $sucess));
-    exit();
+} catch(e){
+    echo json_encode(array('error' => 'Erro ao criar o hábito'));
 }
 
 

@@ -2,9 +2,9 @@
 require_once(__DIR__ . "/../DAO/basicDAO.php");
 class habitsDAO extends BasicDAO{
     private $email;
-    public function registerUser($user_id, $name, $importance, $dificulty, $category, $weekDays, $description, $category_id){
-        $sql = "INSERT INTO habits VALUES(default, ?, ?, ?, ?, ?, ?, ?, default, default, ?)";
-        $this->execDML($sql, $user_id, $name, $importance, $dificulty, $category, $weekDays, $description, $category_id);
+    public function registerUser($user_id, $name, $importance, $dificulty, $category, $description, $category_id){
+        $sql = "INSERT INTO habits VALUES(default, ?, ?, ?, ?, ?, ?, default, default, ?)";
+        $this->execDML($sql, $user_id, $name, $importance, $dificulty, $category, $description, $category_id);
     }
 
     public function getHabitsData($id){
@@ -19,9 +19,9 @@ class habitsDAO extends BasicDAO{
         }
     }
     
-    public function updateHabit($name, $importance, $dificulty, $category, $weekDays, $description, $habitID){
-        $sql = "UPDATE habits SET name = ?, importance = ?, dificulty = ?, category = ?, weekdays = ?, description = ? where id = ?";
-        $this->execDML($sql, $name, $importance, $dificulty, $category, $weekDays, $description, $habitID);
+    public function updateHabit($name, $importance, $dificulty, $category, $description, $category_id, $habitID ){
+        $sql = "UPDATE habits SET name = ?, importance = ?, dificulty = ?, category = ?, description = ?, category_id = ? where id = ?";
+        $this->execDML($sql, $name, $importance, $dificulty, $category, $description, $category_id, $habitID);
     }
 
     public function deleteHabit($habitID){
