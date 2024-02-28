@@ -19,13 +19,13 @@ class tasksDAO extends BasicDAO{
     }
     
     public function updateTask($name, $importance, $dificulty, $category, $category_id, $description, $taskId ){
-        $sql = "UPDATE habits SET name = ?, importance = ?, dificulty = ?, category = ?, category_id = ?, description = ? where id = ?";
+        $sql = "UPDATE tasks SET name = ?, importance = ?, dificulty = ?, category = ?, category_id = ?, description = ? where id = ?";
         $this->execDML($sql, $name, $importance, $dificulty, $category, $category_id, $description, $taskId);
     }
 
-    public function deleteTask($habitID){
-        $sql = "DELETE FROM habits WHERE id = ?";
-        $this->execDML($sql, $habitID);
+    public function deleteTask($taskId){
+        $sql = "DELETE FROM tasks WHERE id = ?";
+        $this->execDML($sql, $taskId);
     }
 }
 
